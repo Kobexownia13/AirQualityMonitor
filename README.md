@@ -128,5 +128,5 @@ Nowe API (od 30.06.2025) zwraca dane w formacie JSON-LD z polskimi nazwami pól.
 Dokumentacja: https://powietrze.gios.gov.pl/pjp/content/api
 
 ## Autor
+**_Mateusz Kwasek_**
 
-Projekt JPO 2025/2026
