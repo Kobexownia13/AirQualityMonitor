@@ -68,7 +68,7 @@ filtrowanie po dacie) — plik `tests/test_analyzer.cpp`.
 doxygen Doxyfile
 ```
 
-Wynik: `docs/output/html/index.html`
+Wynik: `docs/html/index.html`
 
 ## Struktura projektu
 

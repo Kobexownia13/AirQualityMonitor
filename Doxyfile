@@ -1,9 +1,8 @@
 PROJECT_NAME           = "Monitor Jakosci Powietrza"
 PROJECT_NUMBER         = 1.0
 PROJECT_BRIEF          = "Aplikacja do monitorowania jakosci powietrza w Polsce (GIOS)"
-OUTPUT_DIRECTORY       = docs/output
-# README.md musi byc na liscie INPUT, zeby USE_MDFILE_AS_MAINPAGE dzialalo.
-# Bez tego README nie byl skanowany, a strona glowna Doxygena byla pusta.
+OUTPUT_DIRECTORY       = docs
+# README.md jest tu dodany, bo ma byc strona glowna dokumentacji.
 INPUT                  = src tests README.md
 RECURSIVE              = YES
 FILE_PATTERNS          = *.h *.cpp *.md

@@ -1,7 +1,7 @@
-@"
 build/
 build-*/
 .qtcreator/
+docs/
 *.user
 *.exe
 *.dll
@@ -10,4 +10,3 @@ build-*/
 CMakeFiles/
 CMakeCache.txt
 _deps/
-"@ | Out-File -Encoding utf8 .gitignore
