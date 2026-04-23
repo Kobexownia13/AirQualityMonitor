@@ -1,0 +1,21 @@
+PROJECT_NAME           = "Monitor Jakosci Powietrza"
+PROJECT_NUMBER         = 1.0
+PROJECT_BRIEF          = "Aplikacja do monitorowania jakosci powietrza w Polsce (GIOS)"
+OUTPUT_DIRECTORY       = docs/output
+# README.md musi byc na liscie INPUT, zeby USE_MDFILE_AS_MAINPAGE dzialalo.
+# Bez tego README nie byl skanowany, a strona glowna Doxygena byla pusta.
+INPUT                  = src tests README.md
+RECURSIVE              = YES
+FILE_PATTERNS          = *.h *.cpp *.md
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+GENERATE_TREEVIEW      = YES
+BUILTIN_STL_SUPPORT    = YES
+JAVADOC_AUTOBRIEF      = YES
+TAB_SIZE               = 4
+SOURCE_BROWSER         = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+OUTPUT_LANGUAGE        = Polish

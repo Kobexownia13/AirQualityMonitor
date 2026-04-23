@@ -1,0 +1,13 @@
+@"
+build/
+build-*/
+.qtcreator/
+*.user
+*.exe
+*.dll
+*.o
+*.obj
+CMakeFiles/
+CMakeCache.txt
+_deps/
+"@ | Out-File -Encoding utf8 .gitignore
