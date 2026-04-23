@@ -130,5 +130,5 @@ jako zbyt długi).
 
 ## Autor
 
-Projekt JPO 2025/2026
+*_Mateusz Kwasek_*
 
