@@ -14,6 +14,7 @@ Dane z API GIOŚ (v1): https://powietrze.gios.gov.pl/pjp/content/api
 - Indeks jakości powietrza z kolorową skalą
 - Wyszukiwanie stacji po nazwie miejscowości
 - Wyszukiwanie stacji w zadanym promieniu od lokalizacji (haversine)
+- Interaktywna mapa stacji pomiarowych z wyborem stacji przez kliknięcie punktu
 - Interfejs aplikacji w języku polskim
 - Obsługa błędów sieciowych z propozycją danych z bazy
 - Wielowątkowość (QtConcurrent) — pobieranie danych nie blokuje GUI
@@ -95,7 +96,9 @@ src/
     ├── MainWindow.h
     ├── MainWindow.cpp          - główne okno aplikacji
     ├── ChartWidget.h
-    └── ChartWidget.cpp         - widget wykresu z filtrowaniem po dacie
+    ├── ChartWidget.cpp         - widget wykresu z filtrowaniem po dacie
+    ├── MapWidget.h
+    └── MapWidget.cpp           - uproszczona mapa stacji pomiarowych
 tests/
 └── test_analyzer.cpp           - testy modułu DataAnalyzer (GoogleTest)
 ```

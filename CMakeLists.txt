@@ -40,6 +40,7 @@ set(SOURCES
     src/analysis/DataAnalyzer.cpp
     src/gui/MainWindow.cpp
     src/gui/ChartWidget.cpp
+    src/gui/MapWidget.cpp
 )
 
 set(HEADERS
@@ -52,6 +53,7 @@ set(HEADERS
     src/analysis/DataAnalyzer.h
     src/gui/MainWindow.h
     src/gui/ChartWidget.h
+    src/gui/MapWidget.h
     src/utils/GeoUtils.h
 )
 

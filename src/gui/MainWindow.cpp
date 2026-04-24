@@ -235,6 +235,9 @@ void MainWindow::setupUI() {
     m_chartWidget = new ChartWidget();
     m_tabWidget->addTab(m_chartWidget, QStringLiteral("Wykres"));
 
+    m_mapWidget = new MapWidget();
+    m_tabWidget->addTab(m_mapWidget, QStringLiteral("Mapa"));
+
     m_analysisText = new QTextEdit();
     m_analysisText->setReadOnly(true);
     m_tabWidget->addTab(m_analysisText, QStringLiteral("Analiza"));
@@ -271,6 +274,7 @@ void MainWindow::setupUI() {
     connect(m_indexBtn, &QPushButton::clicked, this, &MainWindow::onShowIndex);
     connect(m_radiusSearchBtn, &QPushButton::clicked, this, &MainWindow::onSearchRadius);
     connect(m_locationEdit, &QLineEdit::returnPressed, this, &MainWindow::onSearchRadius);
+    connect(m_mapWidget, &MapWidget::stationClicked, this, &MainWindow::selectStationById);
 
     // Wyszukiwanie dziala dopiero po zaladowaniu stacji.
     setSearchControlsEnabled(false);
@@ -346,6 +350,7 @@ void MainWindow::updateStationList(const QString& filter) {
     m_stationList->clear();
     int count = 0;
     const QString normalizedFilter = normalizeForSearch(filter);
+    std::vector<Station> displayedStations;
 
     for (const auto& s : m_stations) {
         const QString cityName = QString::fromStdString(s.city.name);
@@ -361,7 +366,12 @@ void MainWindow::updateStationList(const QString& filter) {
             QString("[%1] %2\n     %3").arg(s.id).arg(stName, cityName));
         item->setData(Qt::UserRole, s.id);
         m_stationList->addItem(item);
+        displayedStations.push_back(s);
         count++;
+    }
+    if (m_mapWidget) {
+        m_mapWidget->setStations(displayedStations);
+        m_mapWidget->setSelectedStationId(m_selectedStationId);
     }
     statusBar()->showMessage(QStringLiteral("Wyswietlono %1 z %2 stacji.").arg(count).arg(m_stations.size()), 3000);
 }
@@ -410,6 +420,7 @@ void MainWindow::onSearchRadius() {
     
     // Pokazujemy wyniki na tej samej liscie stacji.
     m_stationList->clear();
+    std::vector<Station> displayedStations;
     for (const auto& r : results) {
         QString text = QString("[%1] %2\n     %3 (%4 km)")
             .arg(r.station.id)
@@ -419,6 +430,11 @@ void MainWindow::onSearchRadius() {
         auto* item = new QListWidgetItem(text);
         item->setData(Qt::UserRole, r.station.id);
         m_stationList->addItem(item);
+        displayedStations.push_back(r.station);
+    }
+    if (m_mapWidget) {
+        m_mapWidget->setStations(displayedStations);
+        m_mapWidget->setSelectedStationId(m_selectedStationId);
     }
     
     statusBar()->showMessage(QStringLiteral("Znaleziono %1 stacji w promieniu %2 km.")
@@ -461,6 +477,9 @@ void MainWindow::onStationSelected() {
     auto* item = m_stationList->currentItem();
     if (!item) return;
     m_selectedStationId = item->data(Qt::UserRole).toInt();
+    if (m_mapWidget) {
+        m_mapWidget->setSelectedStationId(m_selectedStationId);
+    }
 
     const Station* sel = nullptr;
     for (const auto& s : m_stations)
@@ -706,7 +725,7 @@ void MainWindow::fetchAndDisplayIndex(bool switchToIndexTab, bool useGlobalLoadi
                 QStringLiteral("<h3>Indeks jakosci powietrza</h3><p>%1</p>")
                     .arg(err.toHtmlEscaped()));
             if (switchToIndexTab) {
-                m_tabWidget->setCurrentIndex(2);
+                m_tabWidget->setCurrentWidget(m_indexText);
             }
             future->deleteLater();
             return;
@@ -749,7 +768,7 @@ void MainWindow::fetchAndDisplayIndex(bool switchToIndexTab, bool useGlobalLoadi
 
         m_indexText->setHtml(html);
         if (switchToIndexTab) {
-            m_tabWidget->setCurrentIndex(2);
+            m_tabWidget->setCurrentWidget(m_indexText);
         }
         future->deleteLater();
     });

@@ -13,6 +13,7 @@ FUNKCJONALNOSCI
   - Lokalna baza danych JSON
   - Wykresy (Qt Charts)
   - Analiza statystyczna
+  - Interaktywna mapa stacji
   - Wyszukiwanie w promieniu (km)
   - Interfejs w jezyku polskim
 
@@ -40,7 +41,7 @@ DOKUMENTACJA
   doxygen Doxyfile
 
 STATUS: kompletny (GUI, wykresy, analiza,
-  wyszukiwanie w promieniu, testy,
+  mapa, wyszukiwanie w promieniu, testy,
   Doxygen, wielowatkowosc)
 =======================================
 

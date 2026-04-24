@@ -27,6 +27,7 @@
 #include "database/DatabaseManager.h"
 #include "analysis/DataAnalyzer.h"
 #include "gui/ChartWidget.h"
+#include "gui/MapWidget.h"
 
 /**
  * @class MainWindow
@@ -66,6 +67,7 @@ private:
     QLabel* m_stationInfoLabel;
     QTabWidget* m_tabWidget;
     ChartWidget* m_chartWidget;
+    MapWidget* m_mapWidget;
     QTextEdit* m_analysisText;
     QTextEdit* m_indexText;
     QPushButton* m_saveBtn;
